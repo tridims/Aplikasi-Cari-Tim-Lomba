@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('lomba_id')->constrained()->onDelete('cascade');
+            $table->string('status')->default('live');
             $table->string('judul');
             $table->integer('jumlah');
             $table->longText('deskripsi');
