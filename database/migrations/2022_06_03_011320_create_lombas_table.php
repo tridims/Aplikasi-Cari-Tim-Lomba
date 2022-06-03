@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('lombas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained(); // created by
             $table->string('nama');
             $table->date('deadline_pendaftaran');
             $table->string('poster');
