@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Lomba\LombaController;
 use App\Http\Controllers\Rekrutmen\RekrutmenController;
 use App\Http\Controllers\User\UserDashboardController;
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // landing page
-Route::view('/', 'welcome');
+Route::get('/', [LandingPageController::class, 'index']);
 
 // rute group dashboard
 Route::group(['prefix'=> 'dashboard', 'middleware'=>'auth'], function () {
