@@ -2,6 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Lomba;
+use App\Models\Rekrutmen;
+use App\Models\RequestRekrutmen;
+use App\Models\RiwayatPerlombaan;
+use App\Models\User;
+use App\Models\UserProfile;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,11 +20,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->call(LombaSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(RekrutmenSeeder::class);
     }
 }
