@@ -25,7 +25,7 @@ Route::group(['prefix'=> 'dashboard', 'middleware'=>'auth'], function () {
     Route::view('/', 'dashboard')->name('dashboard');
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('profile');
     Route::get('/rekrutmen', [UserDashboardController::class, 'rekrutmen'])->name('rekrutmen');
-    Route::get('/rekrutmen/{id}', [UserDashboardController::class, 'detail_rekrutmen'])->name('detail_rekrutmen');
+    Route::get('/rekrutmen/{rekrutmen}', [UserDashboardController::class, 'pengumuman_rekrutmen'])->name('detail_rekrutmen');
 });
 
 Route::group(['prefix'=>'lomba'], function() {

@@ -11,11 +11,30 @@
                 </div>
 
                 <!-- Navigation Links -->
+
+                <!-- Home Dashboard -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                <!-- Profile -->
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('profile')" :active="request()->routeIs('profile')">
+                        {{ __('Profile') }}
+                    </x-nav-link>
+                </div>
+
+                <!-- Pengumuman Rekrutmen -->
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('rekrutmen')" :active="request()->routeIs('rekrutmen')">
+                        {{ __('Rekrutmen') }}
+                    </x-nav-link>
+                </div>
+
+
+                <!-- end of Navigation Links -->
             </div>
 
             <!-- Settings Dropdown -->

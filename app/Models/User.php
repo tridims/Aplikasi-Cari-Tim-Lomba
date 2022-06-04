@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -45,10 +46,20 @@ class User extends Authenticatable
     /**
      * Get the user's profile.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<UserProfile>
+     * @return HasOne<UserProfile>
      */
-    public function profile(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function profile(): HasOne
     {
         return $this->hasOne(UserProfile::class, 'user_id');
+    }
+
+    public function rekrutmen(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Rekrutmen::class, 'user_id');
+    }
+
+    public function requestRekrutmen(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(RequestRekrutmen::class, 'user_id');
     }
 }
