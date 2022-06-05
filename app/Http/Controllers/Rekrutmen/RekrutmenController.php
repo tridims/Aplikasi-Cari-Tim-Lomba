@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Rekrutmen;
 use App\Http\Controllers\Controller;
 use App\Models\Lomba;
 use App\Models\Rekrutmen;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,17 +39,20 @@ class RekrutmenController extends Controller
 
     // store the new rekrutmen
     public function store(Request $request, Lomba $lomba) {
-        $user = Auth::user();
+        $user = auth()->user();
         $formFields = $request->validate([
             'judul' => 'required|string|max:255',
             'jumlah' => 'required|integer|min:1',
             'deskripsi' => 'required|string',
         ]);
 
-        $formFields['user_id'] = $user->id;
-        $formFields['lomba_id'] = $lomba->id;
-
-        $rekrutmen = $lomba->rekrutmen()->create($formFields);
+        $rekrutmen = $lomba->rekrutmen()->create([
+            'user_id' => $user->id,
+            'lomba_id' => $lomba->id,
+            'judul' => $formFields['judul'],
+            'jumlah' => $formFields['jumlah'],
+            'deskripsi' => $formFields['deskripsi'],
+        ]);
 
         return redirect()->route('detail_rekrutmen_user', ['rekrutmen' => $rekrutmen]);
     }
@@ -68,7 +72,7 @@ class RekrutmenController extends Controller
         ]);
 
         $idRekrutmen = $rekrutmen->id;
-        Auth::user()->rekrutmen()->updateExistingPivot($idRekrutmen, $formFields);
+        Auth::user()->rekrutmen()->find($idRekrutmen)->update($formFields);
 
         return redirect()->route('detail_rekrutmen_user', ['rekrutmen' => $rekrutmen]);
     }

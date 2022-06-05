@@ -9,6 +9,14 @@ class Rekrutmen extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'lomba_id',
+        'judul',
+        'jumlah',
+        'deskripsi',
+    ];
+
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(UserProfile::class, 'user_profile_id');
