@@ -3,6 +3,7 @@
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Lomba\LombaController;
 use App\Http\Controllers\Rekrutmen\RekrutmenController;
+use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // landing page
-Route::get('/', [LandingPageController::class, 'index']);
+Route::get('/', [LandingPageController::class, 'index'])->name('landing-page');
+Route::get('/profil/{user}', [UserController::class, 'profile'])->name('public_profil');
 
 // rute group dashboard
 Route::group(['prefix'=> 'dashboard', 'middleware'=>'auth'], function () {

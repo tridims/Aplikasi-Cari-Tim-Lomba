@@ -9,6 +9,17 @@ class Lomba extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nama',
+        'deadline_pendaftaran',
+        'poster',
+        'kategori',
+        'penyelenggara',
+        'tingkat',
+        'website',
+        'deskripsi',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained(); // created by
             $table->string('nama');
             $table->date('deadline_pendaftaran');
-            $table->string('poster');
+            $table->string('poster')->nullable();
             $table->string('kategori');
             $table->string('penyelenggara');
             $table->string('tingkat');

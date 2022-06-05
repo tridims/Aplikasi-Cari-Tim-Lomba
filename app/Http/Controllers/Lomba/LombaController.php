@@ -66,12 +66,12 @@ class LombaController extends Controller
             $formFields['poster'] = $request->file('poster')->store('poster', 'public');
         }
 
-        Auth::user()->lomba()->updateExistingPivot($lomba->id, $formFields);
+        Auth::user()->lomba()->where('id', $lomba->id)->update($formFields);
         return redirect()->route('detail_lomba', ['lomba' => $lomba]);
     }
 
     public function delete(Lomba $lomba) {
-        $lomba->delete();
+        Auth::user()->lomba()->where('id', $lomba->id)->delete();
         return redirect()->route('daftar_lomba');
     }
 }
