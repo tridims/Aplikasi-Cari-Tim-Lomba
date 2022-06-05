@@ -67,6 +67,7 @@ class LombaController extends Controller
         }
 
         Auth::user()->lomba()->updateExistingPivot($lomba->id, $formFields);
+        return redirect()->route('detail_lomba', ['lomba' => $lomba]);
     }
 
     public function delete(Lomba $lomba) {

@@ -35,6 +35,7 @@ class UserDashboardController extends Controller
     public function pengumuman_rekrutmen(Rekrutmen $rekrutmen) {
         $daftar_user_request = $rekrutmen->requestRekrutmen;
         $lomba = $rekrutmen->lomba;
+
         return view('user.pengumuman_rekrutmen', [
             'rekrutmen' => $rekrutmen,
             'daftar_user_request' => $daftar_user_request,

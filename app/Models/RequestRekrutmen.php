@@ -9,9 +9,9 @@ class RequestRekrutmen extends Model
 {
     use HasFactory;
 
-    public function userProfile(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(UserProfile::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function rekrutmen()

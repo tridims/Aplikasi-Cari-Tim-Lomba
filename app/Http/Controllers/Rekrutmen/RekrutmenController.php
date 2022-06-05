@@ -18,6 +18,17 @@ class RekrutmenController extends Controller
         ]);
     }
 
+    // detail rekrutmen
+    public function detail_rekrutmen(Rekrutmen $rekrutmen) {
+        $daftar_user_request = $rekrutmen->requestRekrutmen;
+        $lomba = $rekrutmen->lomba;
+        return view('rekrutmen.detail_rekrutmen', [
+            'rekrutmen' => $rekrutmen,
+            'daftar_user_request' => $daftar_user_request,
+            'lomba' => $lomba,
+        ]);
+    }
+
     // show the form to create a new rekrutmen
     public function add(Lomba $lomba) {
         return view('rekrutmen.add', [
@@ -39,7 +50,7 @@ class RekrutmenController extends Controller
 
         $rekrutmen = $lomba->rekrutmen()->create($formFields);
 
-        return redirect()->route('detail_rekrutmen', ['rekrutmen' => $rekrutmen]);
+        return redirect()->route('detail_rekrutmen_user', ['rekrutmen' => $rekrutmen]);
     }
 
     // show edit forms
@@ -59,7 +70,7 @@ class RekrutmenController extends Controller
         $idRekrutmen = $rekrutmen->id;
         Auth::user()->rekrutmen()->updateExistingPivot($idRekrutmen, $formFields);
 
-        return redirect()->route('detail_rekrutmen', ['rekrutmen' => $rekrutmen]);
+        return redirect()->route('detail_rekrutmen_user', ['rekrutmen' => $rekrutmen]);
     }
 
     // delete rekrutmen

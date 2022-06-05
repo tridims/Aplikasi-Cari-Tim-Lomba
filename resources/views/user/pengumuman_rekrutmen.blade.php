@@ -35,7 +35,7 @@
                 @unless(count($daftar_user_request) == 0)
                     @foreach($daftar_user_request as $daftar)
                         <div class="p-6 bg-white border-b border-gray-200">
-                            <h4>{{$daftar->userProfile->nama}}</h4>
+                            <h4>{{$daftar->user->profile->nama}}</h4>
                             <p>{{$daftar->status}}</p>
                             <br>
                         </div>

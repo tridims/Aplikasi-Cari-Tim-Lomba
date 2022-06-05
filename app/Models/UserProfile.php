@@ -34,4 +34,9 @@ class UserProfile extends Model
     {
         return $this->hasMany(RiwayatPerlombaan::class);
     }
+
+    public function request_rekrutmen()
+    {
+        return $this->hasMany(RequestRekrutmen::class);
+    }
 }

@@ -25,14 +25,14 @@ Route::group(['prefix'=> 'dashboard', 'middleware'=>'auth'], function () {
     Route::view('/', 'dashboard')->name('dashboard');
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('profile');
     Route::get('/rekrutmen', [UserDashboardController::class, 'rekrutmen'])->name('rekrutmen');
-    Route::get('/rekrutmen/{rekrutmen}', [UserDashboardController::class, 'pengumuman_rekrutmen'])->name('detail_rekrutmen');
+    Route::get('/rekrutmen/{rekrutmen}', [UserDashboardController::class, 'pengumuman_rekrutmen'])->name('detail_rekrutmen_user');
 });
 
 Route::group(['prefix'=>'lomba'], function() {
    Route::get('/', [LombaController::class, 'daftar_lomba'])->name('daftar_lomba');
 
    Route::middleware('auth')->group(function() {
-       Route::view('/add', 'lomba.add')->name('add_lomba');
+       Route::view('/add', 'lomba.create')->name('add_lomba');
        Route::post('/add', [LombaController::class, 'store'])->name('store_lomba');
        Route::get('/edit/{lomba}', [LombaController::class, 'edit'])->name('edit_lomba');
        Route::put('/edit/{lomba}', [LombaController::class, 'update'])->name('update_lomba');
@@ -44,6 +44,7 @@ Route::group(['prefix'=>'lomba'], function() {
 
 Route::group(['prefix'=>'rekrutmen'], function() {
    Route::get('/', [RekrutmenController::class, 'daftar_rekrutmen'])->name('daftar_rekrutmen');
+   Route::get('{rekrutmen}', [RekrutmenController::class, 'detail_rekrutmen'])->name('detail_rekrutmen');
 
    Route::middleware('auth')->group(function() {
        Route::get('/add/{lomba}', [RekrutmenController::class, 'add'])->name('add_rekrutmen');
