@@ -34,25 +34,25 @@ Route::group(['prefix'=>'lomba'], function() {
    Route::middleware('auth')->group(function() {
        Route::view('/add', 'lomba.add')->name('add_lomba');
        Route::post('/add', [LombaController::class, 'store'])->name('store_lomba');
-       Route::get('/edit/{id}', [LombaController::class, 'edit'])->name('edit_lomba');
-       Route::post('/edit/{id}', [LombaController::class, 'update'])->name('update_lomba');
-       Route::get('/delete/{id}', [LombaController::class, 'delete'])->name('delete_lomba');
+       Route::get('/edit/{lomba}', [LombaController::class, 'edit'])->name('edit_lomba');
+       Route::put('/edit/{lomba}', [LombaController::class, 'update'])->name('update_lomba');
+       Route::delete('/delete/{lomba}', [LombaController::class, 'delete'])->name('delete_lomba');
    });
 
-    Route::get('/{id}', [LombaController::class, 'detail_lomba'])->name('detail_lomba');
+    Route::get('/{lomba}', [LombaController::class, 'detail_lomba'])->name('detail_lomba');
 });
 
 Route::group(['prefix'=>'rekrutmen'], function() {
    Route::get('/', [RekrutmenController::class, 'daftar_rekrutmen'])->name('daftar_rekrutmen');
 
    Route::middleware('auth')->group(function() {
-       Route::get('/add/{idLomba}', [RekrutmenController::class, 'add'])->name('add_rekrutmen');
-       Route::post('/add', [RekrutmenController::class, 'store'])->name('store_rekrutmen');
+       Route::get('/add/{lomba}', [RekrutmenController::class, 'add'])->name('add_rekrutmen');
+       Route::post('/add/{lomba}', [RekrutmenController::class, 'store'])->name('store_rekrutmen');
 
-       Route::get('/edit/{id}', [RekrutmenController::class, 'edit'])->name('edit_rekrutmen');
-       Route::post('/edit/{id}', [RekrutmenController::class, 'update'])->name('update_rekrutmen');
+       Route::get('/edit/{rekrutmen}', [RekrutmenController::class, 'edit'])->name('edit_rekrutmen');
+       Route::put('/edit/{rekrutmen}', [RekrutmenController::class, 'update'])->name('update_rekrutmen');
 
-       Route::get('/delete/{id}', [RekrutmenController::class, 'delete'])->name('delete_rekrutmen');
+       Route::delete('/delete/{rekrutmen}', [RekrutmenController::class, 'delete'])->name('delete_rekrutmen');
    });
 });
 
