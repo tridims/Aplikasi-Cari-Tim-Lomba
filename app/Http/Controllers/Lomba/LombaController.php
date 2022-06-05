@@ -3,36 +3,74 @@
 namespace App\Http\Controllers\Lomba;
 
 use App\Http\Controllers\Controller;
+use App\Models\Lomba;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LombaController extends Controller
 {
-    //TODO:implement function
-
     public function daftar_lomba() {
-        //TODO: add pagination
-        return "daftar lomba";
+        $lomba = Lomba::orderBy('created_at', 'desc')->paginate(10);
+        return view('lomba.daftar_lomba', [
+            'lomba' => $lomba
+        ]);
     }
 
-    public function detail_lomba($id) {
-        //TODO: use model to get data
-        return "detail lomba dengan id $id";
+    public function detail_lomba(Lomba $lomba) {
+        return view('lomba.detail_lomba', [
+            'lomba' => $lomba
+        ]);
     }
 
     public function store(Request $request) {
-        //TODO: use model to store data and redirect to daftar_lomba and also make new request
-        return "store lomba";
+        $user = Auth::user();
+        $formFields = $request->validate([
+            'nama' => 'required|string|max:255',
+            'deadline_pendaftaran' => 'required|date',
+            'kategori' => 'required|string',
+            'penyelenggara' => 'required|string',
+            'tingkat' => 'required|string',
+            'website' => 'required|string',
+            'deskripsi' => 'required|string',
+        ]);
+
+        if ($request->hasFile('poster')) {
+            $formFields['poster'] = $request->file('poster')->store('poster', 'public');
+        }
+
+        $formFields['user_id'] = $user->id;
+
+        $lomba = $user->lomba()->create($formFields);
+
+        return redirect()->route('detail_lomba', ['lomba' => $lomba]);
     }
 
-    public function edit($id) {
-        return "edit lomba dengan id $id";
+    public function edit(Lomba $lomba) {
+        return view('lomba.edit', [
+            'lomba' => $lomba
+        ]);
     }
 
-    public function update(Request $request) {
-        return "update lomba";
+    public function update(Lomba $lomba, Request $request) {
+        $formFields = $request->validate([
+            'nama' => 'required|string|max:255',
+            'deadline_pendaftaran' => 'required|date',
+            'kategori' => 'required|string',
+            'penyelenggara' => 'required|string',
+            'tingkat' => 'required|string',
+            'website' => 'required|string',
+            'deskripsi' => 'required|string',
+        ]);
+
+        if ($request->hasFile('poster')) {
+            $formFields['poster'] = $request->file('poster')->store('poster', 'public');
+        }
+
+        Auth::user()->lomba()->updateExistingPivot($lomba->id, $formFields);
     }
 
-    public function delete($id) {
-        return "delete lomba dengan id $id";
+    public function delete(Lomba $lomba) {
+        $lomba->delete();
+        return redirect()->route('daftar_lomba');
     }
 }

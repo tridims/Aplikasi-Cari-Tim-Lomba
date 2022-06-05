@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(RequestRekrutmen::class, 'user_id');
     }
+
+    public function lomba(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->hasManyMany(Lomba::class, 'rekrutmen', 'user_id', 'lomba_id');
+    }
 }
