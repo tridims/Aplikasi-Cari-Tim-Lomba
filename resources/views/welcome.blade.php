@@ -1,80 +1,134 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!doctype html>
+<html lang="en">
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Cari Tim</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Nunito', sans-serif;
-        }
-    </style>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="../css/style2.css">
+    <title>Cari Tim Lomba</title>
 </head>
-<body class="antialiased">
-<div>
-    @if (Route::has('login'))
-        <div>
-            @auth
-                <a href="{{ url('/dashboard') }}">Dashboard</a>
-            @else
-                <a href="{{ route('login') }}">Log in</a>
+<body>
+<!-- Navbar -->
+<!-- Navbar -->
+<header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fix-top py-3" , style="background-color: #242526">
+        <div class="container">
+            <a class="navbar-brand" href="{{route('landing_page')}}"><span>Cari-Tim</span>Lomba</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}">Register</a>
-                @endif
-            @endauth
-        </div>
-    @endif
-
-    <h1>Daftar Lomba</h1>
-    @unless(count($lomba) == 0)
-
-        @foreach($lomba as $lomba_item)
-            <div>
-                <br>
-                <h4>{{$lomba_item->nama}}</h4>
-                <p>{{$lomba_item->deadline_pendaftaran}}</p>
-                <p>{{$lomba_item->poster}}</p>
-                <p>{{$lomba_item->kategori}}</p>
-                <p>{{$lomba_item->penyelenggara}}</p>
-                <p>{{$lomba_item->tingkat}}</p>
-                <p>{{$lomba_item->website}}</p>
-                <p>{{$lomba_item->deskripsi}}</p>
-                <br>
+            <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link me-4 active" aria-current="page" href="{{route('daftar_lomba')}}">Daftar
+                            Lomba</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link me-4 " href="pemberitahuan.html">Pemberitahuan</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link me-4 " href="{{route('login')}}">Login</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link me-4 " href="{{route('register')}}">Daftar</a>
+                    </li>
+                </ul>
             </div>
-        @endforeach
-        <br><h1>{{$lomba->links()}}</h1><br>
-
-    @else
-        <div>
-            <p>Tidak ada lomba</p>
+            <div class="icon-home"></div>
         </div>
-    @endunless
+    </nav>
+</header>
+<!-- Navbar -->
 
-    <h2>Daftar Rekrutmen</h2>
-    @unless(count($rekrutmen) == 0)
-        @foreach($rekrutmen as $rekrutmen_item)
-            <div>
-                <br>
-                <h4>{{$rekrutmen_item->judul}}</h4>
-                <p>Lomba : {{$rekrutmen_item->lomba->nama}}</p>
-                <p>{{$rekrutmen_item->status}}</p>
-                <p>{{$rekrutmen_item->jumlah}}</p>
-                <p>{{$rekrutmen_item->deskripsi}}</p>
-                <br>
+<!-- Heading banner -->
+<!-- Home  -->
+<section class="home " id="home ">
+    <div class="container ">
+        <div class="row height-100 ">
+            <div class="col-lg-6 d-flex flex-column justify-content-end content-left ">
+                <h1 class="heading ">Cari-Tim<span>Lomba</span></h1>
             </div>
-        @endforeach
-        <br><h1>{{$rekrutmen->links()}}</h1><br>
-    @else
-        <div>
-            <p>Tidak ada rekrutmen</p>
+            <p class="subheading text-white">
+                Membantu Anda dalam Mencari Tim Lomba yang Anda Butuhkan.
+            </p>
         </div>
-    @endunless
+        <!-- image -->
+        <div class="col-lg-5 ms-auto mb-2 mb-lg-0 d-none d-lg-block ">
+            <img src="/images/Startup_Flatline.png" class="img-fluid position-absolute top-10" alt="foto-1">
+        </div>
+    </div>
+</section>
+<!-- Heading banner -->
+
+
+<!-- Lomba Terbaru -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h6>Lomba Terbaru</h6>
+                    <div class="row">
+                        @foreach($daftar_lomba as $lomba)
+                            <div class="col-sm-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{$lomba->nama}}</h5>
+                                        <p class="card-text">{{$lomba->kategori}}</p>
+                                        <a href="{{route('detail_lomba', ['lomba'=>$lomba->id])}}"
+                                           class="btn btn-primary">Cek Lomba</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Kategori lomba-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h6>Kategori</h6>
+
+                    <div class="row">
+
+                        @foreach($daftar_rekrutmen as $rekrutmen)
+                            <div class="col-sm-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{$rekrutmen->judul}}</h5>
+                                        <p class="card-text">{{$rekrutmen->deskripsi}}</p>
+                                        <a href="{{route('detail_rekrutmen', ['rekrutmen' => $rekrutmen])}}"
+                                           class="btn btn-primary">Go somewhere</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 </html>

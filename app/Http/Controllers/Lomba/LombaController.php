@@ -12,13 +12,23 @@ class LombaController extends Controller
     public function daftar_lomba() {
         $lomba = Lomba::orderBy('created_at', 'desc')->paginate(10);
         return view('lomba.daftar_lomba', [
-            'lomba' => $lomba
+            'daftar_lomba' => $lomba
         ]);
     }
 
     public function detail_lomba(Lomba $lomba) {
+        $rekrutmen = $lomba->rekrutmen()->orderBy('created_at', 'desc')->paginate(10);
+        $rekrutmen->each(function($rekrutmen) {
+            $rekrutmen->nama = $rekrutmen->user->nama;
+            $rekrutmen->request_diterima = $rekrutmen->requestDiterima();
+        });
+
+        $isAuthor = Auth::check() && Auth::user()->id == $lomba->user_id;
+
         return view('lomba.detail_lomba', [
-            'lomba' => $lomba
+            'lomba' => $lomba,
+            'daftar_rekrutmen' => $rekrutmen,
+            'isAuthor' => $isAuthor
         ]);
     }
 
@@ -46,6 +56,11 @@ class LombaController extends Controller
     }
 
     public function edit(Lomba $lomba) {
+        // verify if user is the owner of the lomba
+        if ($lomba->user_id != Auth::user()->id) {
+            return redirect()->route('detail_lomba', ['lomba' => $lomba]);
+        }
+
         return view('lomba.edit', [
             'lomba' => $lomba
         ]);
@@ -71,7 +86,10 @@ class LombaController extends Controller
     }
 
     public function delete(Lomba $lomba) {
-        Auth::user()->lomba()->where('id', $lomba->id)->delete();
+        $isAuthor = Auth::check() && Auth::user()->id == $lomba->user_id;
+        if ($isAuthor) {
+            $lomba->delete();
+        }
         return redirect()->route('daftar_lomba');
     }
 }

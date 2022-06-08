@@ -19,8 +19,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 // landing page
-Route::get('/', [LandingPageController::class, 'index'])->name('landing-page');
-Route::get('/profil/{user}', [UserController::class, 'profile'])->name('public_profil');
+Route::get('/', [LandingPageController::class, 'index'])->name('landing_page');
+
+Route::group(['prefix'=>'profil'], function () {
+    Route::get('/{user}', [UserController::class, 'profile'])->name('public_profil');
+});
+
 
 // rute group dashboard
 Route::group(['prefix'=> 'dashboard', 'middleware'=>'auth'], function () {
@@ -28,6 +32,12 @@ Route::group(['prefix'=> 'dashboard', 'middleware'=>'auth'], function () {
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('profile');
     Route::get('/rekrutmen', [UserDashboardController::class, 'rekrutmen'])->name('rekrutmen');
     Route::get('/rekrutmen/{rekrutmen}', [UserDashboardController::class, 'pengumuman_rekrutmen'])->name('detail_rekrutmen_user');
+
+    Route::get('/edit', [UserController::class, 'edit'])->name('edit_profil');
+    Route::post('/edit', [UserController::class, 'update'])->name('update_profil');
+
+    Route::get('/add-prestasi', [UserController::class, 'addPrestasi'])->name('add_prestasi');
+    Route::post('/add-prestasi', [UserController::class, 'storePrestasi'])->name('store_prestasi');
 });
 
 Route::group(['prefix'=>'lomba'], function() {

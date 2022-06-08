@@ -19,7 +19,7 @@ class Rekrutmen extends Model
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(UserProfile::class, 'user_profile_id');
+        return $this->belongsTo(UserProfile::class, 'user_id');
     }
 
     public function lomba(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -30,5 +30,10 @@ class Rekrutmen extends Model
     public function requestRekrutmen(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(RequestRekrutmen::class);
+    }
+
+    public function requestDiterima(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(RequestRekrutmen::class)->where('status', 'accepted');
     }
 }

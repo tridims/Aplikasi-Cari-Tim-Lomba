@@ -1,0 +1,42 @@
+body {
+  background-color: #0b0b45;
+}
+
+/* tombol rekrutmen */
+.button-rekrutmen button {
+  background-color: #ffa500;
+  color: #ffffff;
+}
+
+.button button {
+  background-color: #ffa500;
+  color: #ffffff;
+}
+.button a {
+  background-color: #ffa500;
+  color: #ffffff;
+}
+
+/* daftar-lomba */
+
+.btn a {
+  text-decoration: none;
+}
+/* tombol add */
+.button-add button {
+  background-color: #ffa500;
+  color: #ffffff;
+}
+
+.button-add a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+/* icon */
+.card-text i {
+  width: 100px;
+  position: absolute;
+  top: 50%;
+  right: 90%;
+}

@@ -11,8 +11,14 @@ class UserDashboardController extends Controller
 {
     public function profile() {
         $user = Auth::user();
+        $profil = $user->profile;
+        $riwayat = $profil->riwayat_lomba;
+
         return view('user.profile', [
-            'user' => $user
+            'user' => $user,
+            'profil' => $profil,
+            'prestasi' => $riwayat,
+            'private' => true,
         ]);
     }
 

@@ -8,6 +8,16 @@ use App\Models\UserProfile;
 
 class RiwayatPerlombaan extends Model
 {
+    protected $fillable = [
+        'user_profile_id',
+        'nama',
+        'tingkat',
+        'penyelenggara',
+        'tahun',
+        'peringkat',
+        'sertifikat',
+    ];
+
     use HasFactory;
 
     public function user()
