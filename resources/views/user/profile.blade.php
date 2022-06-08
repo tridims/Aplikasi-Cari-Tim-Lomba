@@ -73,8 +73,7 @@
 
                     <div class="col-md-12">
                         <label class="labels">Fakultas</label>
-                        <input type="text" class="form-control" placeholder="filkom" value="{{$profil->fakultas}}"
-                               readonly/>
+                        <input type="text" class="form-control" placeholder="filkom" value="{{$profil->fakultas}}" readonly/>
                     </div>
                 </div>
             </div>

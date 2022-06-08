@@ -48,7 +48,7 @@
 
 <div class="container rounded bg-white mt-5 mb-5">
     <h1 class="text-center">Update Lomba</h1>
-    <form action="{{route("update_lomba")}}" method="post" enctype="multipart/form-data">
+    <form action="{{route("update_lomba", $lomba)}}" method="post" enctype="multipart/form-data">
         @csrf
         @method("PUT")
         <div class="row">
