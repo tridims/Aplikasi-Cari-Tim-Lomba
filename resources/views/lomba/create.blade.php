@@ -15,7 +15,7 @@
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark fix-top py-3" , style="background-color: #242526">
+<nav class="navbar navbar-expand-lg navbar-dark fix-top py-3" style="background-color: #242526">
     <div class="container">
         <a class="navbar-brand" href="{{route('daftar_lomba')}}"><span>Cari</span>Lomba</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -26,19 +26,7 @@
         <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link me-4 active " aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link me-4 " href="../dashboard/profil.html">Profil</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link me-4 " href="../halamanUtama/pemberitahuan.html">Pemberitahuan </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link me-4 " href="../dashboard/halamanDaftarRekrutmen.html">Rekrutmen</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link me-4 " href="daftarLomba.html">Lomba</a>
+                    <a class="nav-link me-4 active " href="{{route('dashboard')}}">Dashboard</a>
                 </li>
             </ul>
         </div>

@@ -10,7 +10,25 @@
 </head>
 
 <body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+<nav class="navbar navbar-expand-lg navbar-dark fix-top py-3" style="background-color: #242526">
+    <div class="container">
+        <a class="navbar-brand" href="{{route('daftar_lomba')}}"><span>Cari</span>Lomba</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link me-4 active " href="{{route('dashboard')}}">Dashboard</a>
+                </li>
+            </ul>
+        </div>
+        <div class="icon-home "></div>
+    </div>
+</nav>
 
 <div class="container-fluid">
     <div class="row d-flex justify-content-center">

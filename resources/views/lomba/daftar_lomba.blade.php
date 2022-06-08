@@ -17,20 +17,23 @@
     <title>Daftar Lomba</title>
 </head>
 <body>
-<!-- Navbar -->
 <div class="container-fluid">
-    <nav class="navbar navbar-dark" , style="background-color: #242526" ;>
-        <div class="container-fluid ms-auto">
-            <a class="navbar-brand" href="../halamanUtama/halamanUtama.html"><span>Cari</span>Lomba</a>
-            <form class="d-flex">
-                <input
-                    class="form-control me-2"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                />
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+    <nav class="navbar navbar-expand-lg navbar-dark fix-top py-3" style="background-color: #242526">
+        <div class="container">
+            <a class="navbar-brand" href="{{route('daftar_lomba')}}"><span>Cari</span>Lomba</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link me-4 active " href="{{route('dashboard')}}">Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="icon-home "></div>
         </div>
     </nav>
     <!-- Navbar -->
@@ -107,7 +110,7 @@
             <!-- Tombol -->
             <div class="button-add">
                 <div class="d-grid mt-5 mb-5">
-                        <a class="btn btn-primary mx-5" href="{{route('add_lomba')}}">Tambah Lomba</a>
+                    <a class="btn btn-primary mx-5" href="{{route('add_lomba')}}">Tambah Lomba</a>
                 </div>
             </div>
         </div>

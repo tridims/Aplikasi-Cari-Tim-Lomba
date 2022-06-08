@@ -21,7 +21,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark fix-top py-3" style="background-color: #242526">
     <div class="container">
-        <a class="navbar-brand" href="#"><span>Cari</span>Lomba</a>
+        <a class="navbar-brand" href="{{route('daftar_lomba')}}"><span>Cari</span>Lomba</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,22 +30,7 @@
         <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link me-4 active " aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link me-4 " href="# ">Profil</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link me-4 " href="# ">Pemberitahuan</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link me-4 " href="# ">Rekrutmen</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link me-4 " href="# ">Lomba Yang diikuti</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link me-4 " href="# ">Lomba Terbaru</a>
+                    <a class="nav-link me-4 active " href="{{route('dashboard')}}">Dashboard</a>
                 </li>
             </ul>
         </div>
