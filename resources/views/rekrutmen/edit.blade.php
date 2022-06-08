@@ -44,7 +44,7 @@
                         </div>
                         <div class="mt-2 d-flex justify-content-around">
                             <button class="btn btn-primary mr-3">Save</button>
-                            <a class="btn btn-primary" href="">Kembali</a>
+                            <a class="btn btn-primary" href="{{redirect()->back()}}">Kembali</a>
                         </div>
                     </div>
                 </form>

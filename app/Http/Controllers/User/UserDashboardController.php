@@ -14,9 +14,11 @@ class UserDashboardController extends Controller
         $user = Auth::user();
         $profil = $user->profile;
         $riwayat = $profil->riwayat_lomba;
+        $foto = 'storage/' . $profil->foto;
 
         return view('user.profile', [
             'user' => $user,
+            'foto' => $foto,
             'profil' => $profil,
             'prestasi' => $riwayat,
             'private' => true,

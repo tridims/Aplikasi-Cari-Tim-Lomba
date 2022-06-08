@@ -21,8 +21,8 @@
     <div class="row">
         <div class="col-md-4 border-right" id="col1">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                @if(!empty($user->foto))
-                    <img src="{{asset('storage/'.$user->foto)}}" class="rounded-circle" alt="foto" width="150px">
+                @if(! $user->foto)
+                    <img src="{{asset($foto)}}" class="rounded-circle" alt="foto" width="150px">
                 @else
                     <img width="150px"
                          src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"/>
