@@ -51,10 +51,9 @@
     </nav>
 </header>
 
-
 <div class="container rounded bg-white mt-5 mb-5">
-    <h1 class="text-center">Tambah Lomba</h1>
-    <form action="{{route("store_lomba")}}" method="post" enctype="multipart/form-data">
+    <h1 class="text-center">Update Lomba</h1>
+    <form action="{{route("update_lomba")}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <!-- Input Nama -->
