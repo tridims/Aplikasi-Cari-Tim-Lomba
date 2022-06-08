@@ -45,7 +45,7 @@
     <div class="row">
         <div class="col-md-4 border-right" id="col1">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                @if(! $user->foto)
+                @if($foto != null)
                     <img src="{{asset($foto)}}" class="rounded-circle" alt="foto" width="150px">
                 @else
                     <img width="150px"

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function PHPUnit\Framework\isNull;
 
 class UserController extends Controller
 {
@@ -14,12 +15,18 @@ class UserController extends Controller
         $profil = $user->profile;
         $prestasi = $profil->riwayat_lomba;
         $is_logged_in_user = auth()->user()->id === $user->id;
+        if (!isNull($profil->foto)) {
+            $foto = $profil->foto;
+        } else {
+            $foto = null;
+        }
 
         if ($is_logged_in_user) {
             return redirect()->route('profile');
         }
 
         return view('user.profile', [
+            'foto' => $foto,
             'user' => $user,
             'profil' => $profil,
             'prestasi' => $prestasi,
