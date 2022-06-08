@@ -22,7 +22,6 @@ class RiwayatPerlombaanFactory extends Factory
             "penyelenggara" => $this->faker->company,
             "tahun" => $this->faker->numberBetween(2000, 2020),
             "peringkat" => $this->faker->randomElement(['1', '2', '3', '4', '5']),
-
         ];
     }
 }
