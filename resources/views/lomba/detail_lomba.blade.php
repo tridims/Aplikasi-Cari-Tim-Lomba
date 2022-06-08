@@ -145,7 +145,7 @@
                             <div class="poster">
                                 <figure class="figure">
                                     <img
-                                        src="{{$lomba->poster ? asset('storage/poster' . $lomba->poster) : asset('/images/no-poster.png')}}"
+                                        src="{{$lomba->poster ? asset('storage/' . $lomba->poster) : asset('/images/no-poster.png')}}"
                                         class="figure-img img-fluid rounded 25rem;" alt="poster">
                                     <figcaption class="figure-caption">Poster {{$lomba->nama}}</figcaption>
                                 </figure>
