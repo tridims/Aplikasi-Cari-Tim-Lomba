@@ -14,8 +14,15 @@ class RekrutmenController extends Controller
     // list paginated rekrutmen sorted by the latest created
     public function daftar_rekrutmen() {
         $rekrutmen = Rekrutmen::orderBy('created_at', 'desc')->paginate(10);
+
+        $rekrutmen->each(function($rekrutmen) {
+            $rekrutmen->lomba = $rekrutmen->lomba;
+            $rekrutmen->user = $rekrutmen->user;
+            $rekrutmen->request_diterima = $rekrutmen->requestDiterima;
+        });
+
         return view('rekrutmen.daftar_rekrutmen', [
-            'rekrutmen' => $rekrutmen
+            'listRekrutmen' => $rekrutmen
         ]);
     }
 
@@ -23,10 +30,18 @@ class RekrutmenController extends Controller
     public function detail_rekrutmen(Rekrutmen $rekrutmen) {
         $daftar_user_request = $rekrutmen->requestRekrutmen;
         $lomba = $rekrutmen->lomba;
+        $daftarAnggota = $rekrutmen->requestDiterima;
+
+        $daftarAnggota->each(function ($anggota) {
+            $anggota->user = $anggota->user;
+            $anggota->profile = $anggota->user->profile;
+        });
+
         return view('rekrutmen.detail_rekrutmen', [
             'rekrutmen' => $rekrutmen,
-            'daftar_user_request' => $daftar_user_request,
+            'daftar_request' => $daftar_user_request,
             'lomba' => $lomba,
+            'daftarAnggota' => $daftarAnggota
         ]);
     }
 
@@ -64,6 +79,7 @@ class RekrutmenController extends Controller
         ]);
     }
 
+    // update the rekrutmen
     public function update(Request $request, Rekrutmen $rekrutmen) {
         $formFields = $request->validate([
             'judul' => 'required|string|max:255',
@@ -80,6 +96,24 @@ class RekrutmenController extends Controller
     // delete rekrutmen
     public function delete(Rekrutmen $rekrutmen) {
         $rekrutmen->delete();
+        return redirect()->route('rekrutmen');
+    }
+
+    // stop rekrutmen
+    public function stop(Rekrutmen $rekrutmen) {
+        $rekrutmen->update([
+            'status' => 'stop'
+        ]);
+        return redirect()->route('detail_rekrutmen_user', ['rekrutmen' => $rekrutmen]);
+    }
+
+    public function createRequest(Rekrutmen $rekrutmen) {
+        $user = auth()->user();
+        $rekrutmen->requestRekrutmen()->create([
+            'user_id' => $user->id,
+            'rekrutmen_id' => $rekrutmen->id
+        ]);
+
         return redirect()->route('rekrutmen');
     }
 }

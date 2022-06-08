@@ -138,10 +138,9 @@
 
     <div class="mt-5 text-center">
         @if($private)
-            <a class="btn btn-primary" href="{{route('edit_profil')}}}" role="button">Edit Profil</a>
+            <a class="btn btn-primary" href="{{route('edit_profil')}}" role="button">Edit Profil</a>
+            <a class="btn btn-primary" href="{{route('add_prestasi')}}" role="button">Tambah Riwayat Lomba</a>
         @endif
-
-        <a class="btn btn-primary" href="{{route('add_prestasi')}}" role="button">Tambah Riwayat Lomba</a>
 
     </div>
 

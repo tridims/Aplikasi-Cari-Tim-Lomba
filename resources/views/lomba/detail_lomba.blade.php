@@ -217,34 +217,26 @@
     </div>
 </div>
 
+<div class="container-fluid text-center">
 
-<div class="button-rekrutmen">
     <a class="d-grid mt-5 mb-5" href="{{route('add_rekrutmen', ['lomba'=>$lomba->id])}}">
         <button class="btn-rekrutmen btn btn-primary" type="button">Buat Rekrutmen</button>
     </a>
+
+    @if($isAuthor)
+        <a class="d-grid mt-5 mb-5" href="{{route('edit_lomba', ['lomba'=>$lomba->id])}}">
+            <button class="btn-rekrutmen btn btn-secondary" type="button">Edit</button>
+        </a>
+
+        <form>
+            @csrf
+            @method('DELETE')
+            <a class="d-grid mt-5 mb-5" href="{{route('delete_lomba', $lomba)}}">
+                <button class="btn-rekrutmen btn btn-danger" type="submit">Delete</button>
+            </a>
+        </form>
+    @endif
 </div>
 
-@if($isAuthor)
-    <a class="d-grid mt-5 mb-5" href="{{route('edit_lomba', ['lomba'=>$lomba->id])}}">
-        <button class="btn-rekrutmen btn btn-primary" type="button">Edit</button>
-    </a>
-
-    <form>
-        @csrf
-        @method('DELETE')
-        <a class="d-grid mt-5 mb-5" href="{{route('delete_lomba', ['lomba'=>$lomba->id])}}">
-            <button class="btn-rekrutmen btn btn-primary" type="submit">Delete</button>
-        </a>
-    </form>
-
-@endif
-
-
-<!-- Option 1: Bootstrap Bundle with Popper -->
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"
-></script>
 </body>
 </html>

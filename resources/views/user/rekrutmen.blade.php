@@ -8,47 +8,80 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <!-- Nama -->
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <h1>Welcome ! You're logged in as {{$user->profile->nama}}!</h1>
-                </div>
 
-                <div class="mt-6 p-6 bg-white border-b border-gray-200">
-                    <h1>Daftar Rekrutmen yang kamu post!</h1>
+                <div class="container-fluid">
+                    <!-- daftar rekrutmen -->
+                    <div class="d-flex justify-content-center">
+                        <div class="card mt-5 p-3">
+                            <h4>Daftar Pengumuman Rekrutmen yang kamu buat</h4>
 
-                    @unless(count($listRekrutmen) == 0)
-                        @foreach($listRekrutmen as $rekrutmen)
-                            <div class="mt-2 p-6 bg-white border-b border-gray-200">
-                                <h4>{{$rekrutmen->judul}}</h4>
-                                <p>{{$rekrutmen->jumlah}}</p>
-                                <p>{{$rekrutmen->status}}</p>
-                            </div>
-                        @endforeach
-                    @else
-                        <div class="mt-2 p-6 bg-white border-b border-gray-200">
-                            <p>Tidak ada rekrutmen yang dibuat</p>
+                            <table class="table table-hover mt-4 w-auto border">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Judul</th>
+                                    <th scope="col">Lomba</th>
+                                    <th scope="col">Jumlah</th>
+                                    <th scope="col">Info</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($listRekrutmen as $rekrutmen)
+                                    <tr>
+                                        <th scope="row">{{$loop->iteration}}</th>
+                                        <td>{{$rekrutmen->judul}}</td>
+                                        <td>
+                                            <a href="{{route('detail_lomba', ['lomba'=>$rekrutmen->lomba->id])}}">{{$rekrutmen->lomba->nama}}</a>
+                                        </td>
+                                        <td>{{$rekrutmen->request_diterima->count()}}/{{$rekrutmen->jumlah}}</td>
+                                        <td>
+                                            <a href="{{route('detail_rekrutmen_user', ['rekrutmen'=>$rekrutmen->id])}}"
+                                               class="btn btn-primary">Detail</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+
+                            </table>
                         </div>
-                    @endunless
-                </div>
+                    </div>
+                    <!-- end daftar rekrutmen -->
 
-                <div class="mt-6 p-6 bg-white border-b border-gray-200">
-                    <h1>Request rekrutmen kamu!</h1>
 
-                    @unless(count($listRequestRekrutmen) == 0)
-                        @foreach($listRequestRekrutmen as $rekrutmen)
-                            <div class="mt-2 p-6 bg-white border-b border-gray-200">
-                                <h4>{{$rekrutmen->judul}}</h4>
-                                <p>{{$rekrutmen->status}}</p>
-                            </div>
-                        @endforeach
-                    @else
-                        <div class="mt-2 p-6 bg-white border-b border-gray-200">
-                            <p>Kamu belum membuat request</p>
+                    <!-- daftar request -->
+                    <div class="d-flex justify-content-center">
+                        <div class="card mt-5 p-3">
+                            <h4>Daftar request yang kamu buat</h4>
+
+                            <table class="table table-hover mt-4 w-auto border">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Judul Rekrutmen</th>
+                                    <th scope="col">Lomba</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($listRequestRekrutmen as $r)
+                                    <tr>
+                                        <th scope="row">{{$loop->iteration}}</th>
+                                        <td>
+                                            <a href="{{route('detail_rekrutmen', ['rekrutmen'=>$r->idRekrutmen])}}">{{$r->judul}}</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{route('detail_lomba', ['lomba'=>$r->idLomba])}}">{{$r->lomba->nama}}</a>
+                                        </td>
+                                        <td>{{$r->status}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                    @endunless
+                    </div>
+                    <!-- end daftar request -->
+
                 </div>
-
-
             </div>
         </div>
     </div>

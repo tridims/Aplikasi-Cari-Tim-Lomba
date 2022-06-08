@@ -11,19 +11,26 @@ class UserController extends Controller
 {
     public function profile(User $user)
     {
-        $profil = $user->profil;
+        $profil = $user->profile;
+        $prestasi = $profil->riwayat_lomba;
         $is_logged_in_user = auth()->user()->id === $user->id;
-        return view('user.public-profil', [
+
+        if ($is_logged_in_user) {
+            return redirect()->route('profile');
+        }
+
+        return view('user.profile', [
             'user' => $user,
             'profil' => $profil,
-            'private' => $is_logged_in_user
+            'prestasi' => $prestasi,
+            'private' => false,
         ]);
     }
 
     public function edit()
     {
         $user = Auth::user();
-        $profil = $user->profil;
+        $profil = $user->profile;
         $is_logged_in_user = auth()->user()->id === $user->id;
         return view('user.edit', [
             'user' => $user,
@@ -35,7 +42,7 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $user = Auth::user();
-        $profil = $user->profil;
+        $profil = $user->profile;
 
         $formFieldsUserProfile = $this->validate($request, [
             'nama' => ['required', 'string', 'max:255'],
@@ -62,6 +69,31 @@ class UserController extends Controller
                 'cv' => $request->file('cv')->store('user/cv', 'public')
             ]);
         }
+
+        return redirect()->route('profile');
+    }
+
+    public function addPrestasi() {
+        return view('user.add-prestasi');
+    }
+
+    public function storePrestasi(Request $request) {
+        $user = Auth::user();
+        $profil = $user->profile;
+
+        $formFieldsPrestasi = $this->validate($request, [
+            'nama' => ['required', 'string', 'max:255'],
+            'tingkat' => ['required', 'string', 'max:255'],
+            'penyelenggara' => ['required', 'string', 'max:255'],
+            'tahun' => ['required', 'integer'],
+            'peringkat' => ['required', 'string', 'max:255'],
+        ]);
+
+        if ($request->hasFile('sertifikat')) {
+            $formFieldsPrestasi['sertifikat'] = $request->file('sertifikat')->store('user/sertifikat', 'public');
+        }
+
+        $profil->riwayat_lomba()->create($formFieldsPrestasi);
 
         return redirect()->route('profile');
     }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Lomba\LombaController;
 use App\Http\Controllers\Rekrutmen\RekrutmenController;
+use App\Http\Controllers\Rekrutmen\RequestRekrutmenController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\UserDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -21,12 +22,11 @@ use Illuminate\Support\Facades\Route;
 // landing page
 Route::get('/', [LandingPageController::class, 'index'])->name('landing_page');
 
-Route::group(['prefix'=>'profil'], function () {
+Route::group(['prefix'=>'profile'], function () {
     Route::get('/{user}', [UserController::class, 'profile'])->name('public_profil');
 });
 
-
-// rute group dashboard
+// DASHBOARD
 Route::group(['prefix'=> 'dashboard', 'middleware'=>'auth'], function () {
     Route::view('/', 'dashboard')->name('dashboard');
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('profile');
@@ -40,6 +40,7 @@ Route::group(['prefix'=> 'dashboard', 'middleware'=>'auth'], function () {
     Route::post('/add-prestasi', [UserController::class, 'storePrestasi'])->name('store_prestasi');
 });
 
+// LOMBA
 Route::group(['prefix'=>'lomba'], function() {
    Route::get('/', [LombaController::class, 'daftar_lomba'])->name('daftar_lomba');
 
@@ -54,6 +55,7 @@ Route::group(['prefix'=>'lomba'], function() {
     Route::get('/{lomba}', [LombaController::class, 'detail_lomba'])->name('detail_lomba');
 });
 
+// REKRUTMEN
 Route::group(['prefix'=>'rekrutmen'], function() {
    Route::get('/', [RekrutmenController::class, 'daftar_rekrutmen'])->name('daftar_rekrutmen');
    Route::get('{rekrutmen}', [RekrutmenController::class, 'detail_rekrutmen'])->name('detail_rekrutmen');
@@ -66,6 +68,14 @@ Route::group(['prefix'=>'rekrutmen'], function() {
        Route::put('/edit/{rekrutmen}', [RekrutmenController::class, 'update'])->name('update_rekrutmen');
 
        Route::delete('/delete/{rekrutmen}', [RekrutmenController::class, 'delete'])->name('delete_rekrutmen');
+
+       Route::group(['prefix'=>'/request'], function() {
+           Route::put('/terima/{requestRekrutmen}', [RequestRekrutmenController::class, 'accept'])->name('accept_request');
+           Route::put('/tolak/{requestRekrutmen}', [RequestRekrutmenController::class, 'reject'])->name('refuse_request');
+       });
+
+       Route::put('/stop/{rekrutmen}', [RekrutmenController::class, 'stop'])->name('stop_rekrutmen');
+       Route::put('/create-request/{rekrutmen}', [RekrutmenController::class, 'createRequest'])->name('create_request');
    });
 });
 

@@ -15,6 +15,7 @@ class Rekrutmen extends Model
         'judul',
         'jumlah',
         'deskripsi',
+        'status',
     ];
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
