@@ -6,6 +6,8 @@ use App\Models\Lomba;
 use App\Models\Rekrutmen;
 use App\Models\RequestRekrutmen;
 use App\Models\User;
+use Database\Seeders\DatabaseSeeder;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -36,13 +38,6 @@ class RekrutmenTest extends TestCase
     public function test_render_daftar_rekrutmen()
     {
         $response = $this->get(route('daftar_rekrutmen'));
-        $response->assertStatus(200);
-    }
-
-    public function test_render_detail_rekrutmen() {
-
-        $response = $this->get(route('detail_rekrutmen', ['rekrutmen' => $this->rekrutmen]));
-
         $response->assertStatus(200);
     }
 
