@@ -60,13 +60,13 @@ class UserController extends Controller
 
         if ($request->hasFile('foto')) {
             $profil->update([
-                'foto' => $request->file('foto')->store('user/foto', 'public')
+                'foto' => $request->file('foto')->store('foto', 'public')
             ]);
         }
 
         if ($request->hasFile('cv')) {
             $profil->update([
-                'cv' => $request->file('cv')->store('user/cv', 'public')
+                'cv' => $request->file('cv')->store('cv', 'public')
             ]);
         }
 
@@ -90,7 +90,7 @@ class UserController extends Controller
         ]);
 
         if ($request->hasFile('sertifikat')) {
-            $formFieldsPrestasi['sertifikat'] = $request->file('sertifikat')->store('user/sertifikat', 'public');
+            $formFieldsPrestasi['sertifikat'] = $request->file('sertifikat')->store('sertifikat', 'public');
         }
 
         $profil->riwayat_lomba()->create($formFieldsPrestasi);

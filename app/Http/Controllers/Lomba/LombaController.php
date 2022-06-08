@@ -81,7 +81,8 @@ class LombaController extends Controller
             $formFields['poster'] = $request->file('poster')->store('poster', 'public');
         }
 
-        Auth::user()->lomba()->where('id', $lomba->id)->update($formFields);
+//        Auth::user()->lomba()->where('id', $lomba->id)->update($formFields);
+        $lomba->update($formFields);
         return redirect()->route('detail_lomba', ['lomba' => $lomba]);
     }
 

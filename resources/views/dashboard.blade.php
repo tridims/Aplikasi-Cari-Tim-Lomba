@@ -9,7 +9,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
+                    <a href="{{route('daftar_lomba')}}">
+                        <h1>Daftar Lomba</h1>
+                    </a>
+                </div>
+
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <a href="{{route('daftar_rekrutmen')}}">
+                        <h1>Daftar Rekrutmen</h1>
+                    </a>
                 </div>
             </div>
         </div>

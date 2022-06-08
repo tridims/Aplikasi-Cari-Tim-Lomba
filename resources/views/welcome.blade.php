@@ -28,11 +28,10 @@
             <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link me-4 active" aria-current="page" href="{{route('daftar_lomba')}}">Daftar
-                            Lomba</a>
+                        <a class="nav-link me-4 active" aria-current="page" href="{{route('daftar_lomba')}}">Daftar Lomba</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link me-4 " href="pemberitahuan.html">Pemberitahuan</a>
+                        <a class="nav-link me-4 " href="{{route('daftar_rekrutmen')}}">Daftar Rekrutmen</a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link me-4 " href="{{route('login')}}">Login</a>
