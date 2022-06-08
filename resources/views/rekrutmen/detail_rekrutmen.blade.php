@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-dark fix-top py-3" style="background-color: #242526">
     <div class="container">
         <a class="navbar-brand" href="{{route('daftar_lomba')}}"><span>Cari</span>Lomba</a>
@@ -24,7 +23,14 @@
                 <li class="nav-item">
                     <a class="nav-link me-4 active " href="{{route('dashboard')}}">Dashboard</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link me-4 active " href="{{route('profile')}}">Profil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link me-4 active " href="{{route('rekrutmen')}}">Rekrutmen</a>
+                </li>
             </ul>
+
         </div>
         <div class="icon-home "></div>
     </div>

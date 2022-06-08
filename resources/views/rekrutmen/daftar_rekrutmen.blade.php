@@ -23,9 +23,16 @@
         <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link me-4 active " href="#">Dashboard</a>
+                    <a class="nav-link me-4 active " href="{{route('dashboard')}}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link me-4 active " href="{{route('profile')}}">Profil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link me-4 active " href="{{route('rekrutmen')}}">Rekrutmen</a>
                 </li>
             </ul>
+
         </div>
         <div class="icon-home "></div>
     </div>
@@ -36,7 +43,7 @@
     <!-- daftar rekrutmen -->
     <div class="d-flex justify-content-center">
         <div class="card mt-5 p-3">
-            <h4>Daftar Pengumuman Rekrutmen yang kamu buat</h4>
+            <h4>Daftar Pengumuman Rekrutmen terbaru</h4>
 
             <table class="table table-hover mt-4 w-auto border">
                 <thead class="thead-light">

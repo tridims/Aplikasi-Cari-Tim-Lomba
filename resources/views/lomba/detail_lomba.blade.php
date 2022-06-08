@@ -32,7 +32,14 @@
                 <li class="nav-item">
                     <a class="nav-link me-4 active " href="{{route('dashboard')}}">Dashboard</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link me-4 active " href="{{route('profile')}}">Profil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link me-4 active " href="{{route('rekrutmen')}}">Rekrutmen</a>
+                </li>
             </ul>
+
         </div>
         <div class="icon-home "></div>
     </div>
