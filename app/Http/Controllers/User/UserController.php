@@ -14,7 +14,12 @@ class UserController extends Controller
     {
         $profil = $user->profile;
         $prestasi = $profil->riwayat_lomba;
-        $is_logged_in_user = auth()->user()->id === $user->id;
+        if (Auth::user()) {
+            $is_logged_in_user = Auth::user()->id === $user->id;
+        } else {
+            $is_logged_in_user = false;
+        }
+
         if (!isNull($profil->foto)) {
             $foto = $profil->foto;
         } else {
@@ -38,7 +43,11 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $profil = $user->profile;
-        $is_logged_in_user = auth()->user()->id === $user->id;
+        if (Auth::user()) {
+            $is_logged_in_user = Auth::user()->id === $user->id;
+        } else {
+            $is_logged_in_user = false;
+        }
         return view('user.edit', [
             'user' => $user,
             'profil' => $profil,
