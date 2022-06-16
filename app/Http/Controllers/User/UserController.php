@@ -20,7 +20,7 @@ class UserController extends Controller
             $is_logged_in_user = false;
         }
 
-        if (!isNull($profil->foto)) {
+        if (!$profil->foto) {
             $foto = $profil->foto;
         } else {
             $foto = null;
